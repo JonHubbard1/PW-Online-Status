@@ -51,29 +51,22 @@ new class extends Component
 };
 ?>
 
-<div wire:poll.30s="check" class="w-full space-y-6">
+<div wire:poll.30s="check" class="flex w-full flex-col items-center space-y-6">
     @foreach ($services as $service)
         @php
             $isOnline = $service['online'];
         @endphp
 
-        <div class="w-full rounded-2xl border-2 p-6 shadow-lg transition-colors duration-500 sm:max-w-sm sm:p-8 lg:max-w-md {{ $isOnline ? 'border-emerald-400 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40' : 'border-red-400 bg-red-50 dark:border-red-600 dark:bg-red-950/40' }}">
-            <div class="mb-6 flex items-center justify-between sm:mb-8">
-                <div class="flex items-center gap-3">
-                    <span class="relative flex h-6 w-6 sm:h-8 sm:w-8">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {{ $isOnline ? 'bg-emerald-500' : 'bg-red-500' }}"></span>
-                        <span class="relative inline-flex h-6 w-6 rounded-full sm:h-8 sm:w-8 {{ $isOnline ? 'bg-emerald-500' : 'bg-red-500' }}"></span>
-                    </span>
+        <div class="w-full max-w-sm rounded-2xl border-2 p-6 shadow-lg transition-colors duration-500 sm:p-8 lg:max-w-md {{ $isOnline ? 'border-emerald-400 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40' : 'border-red-400 bg-red-50 dark:border-red-600 dark:bg-red-950/40' }}">
+            <div class="mb-6 flex items-center justify-center gap-3 sm:mb-8">
+                <span class="relative flex h-6 w-6 sm:h-8 sm:w-8">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {{ $isOnline ? 'bg-emerald-500' : 'bg-red-500' }}"></span>
+                    <span class="relative inline-flex h-6 w-6 rounded-full sm:h-8 sm:w-8 {{ $isOnline ? 'bg-emerald-500' : 'bg-red-500' }}"></span>
+                </span>
 
-                    <div>
-                        <h2 class="text-xl font-semibold sm:text-2xl {{ $isOnline ? 'text-emerald-900 dark:text-emerald-100' : 'text-red-900 dark:text-red-100' }}">
-                            {{ $service['name'] }}
-                        </h2>
-                        <p class="text-xs font-medium uppercase tracking-wide {{ $isOnline ? 'text-emerald-700 dark:text-emerald-300' : 'text-red-700 dark:text-red-300' }}">
-                            {{ $service['url'] }}
-                        </p>
-                    </div>
-                </div>
+                <h2 class="text-xl font-semibold sm:text-2xl {{ $isOnline ? 'text-emerald-900 dark:text-emerald-100' : 'text-red-900 dark:text-red-100' }}">
+                    {{ $service['name'] }}
+                </h2>
             </div>
 
             <div class="mb-8 text-center sm:mb-10">
@@ -98,7 +91,7 @@ new class extends Component
         wire:click="check"
         wire:loading.attr="disabled"
         type="button"
-        class="w-full rounded-xl bg-white px-5 py-4 text-base font-bold text-slate-900 shadow-md transition-transform active:scale-95 hover:bg-slate-100 sm:text-lg"
+        class="w-full max-w-sm rounded-xl bg-white px-5 py-4 text-base font-bold text-slate-900 shadow-md transition-transform active:scale-95 hover:bg-slate-100 sm:text-lg lg:max-w-md"
     >
         <span wire:loading.remove>Check again</span>
         <span wire:loading>Checking…</span>
